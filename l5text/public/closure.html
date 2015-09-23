@@ -1,0 +1,28 @@
+<!doctype html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<body>
+ <button>第1条记录</button>
+    <button>第2条记录</button>
+    <button>第3条记录</button>
+    <button>第4条记录</button>
+    <button>第5条记录</button>
+    <button>第6条记录</button>
+<script type="text/javascript"> 
+    var buttonst_obj = document.getElementsByTagName("button");
+    for (var i = 0, len = buttonst_obj.length; i < len; i++) {
+        buttonst_obj[i].onclick = cl(i);
+    }
+
+   function cl(i) {
+    return function() {	
+    	alert(i);
+    }
+   }
+   function tt() {
+   	console.log('jfasjfj');
+   }
+   var that = {
+   	hhh:tt
+   }
+</script>
+</body>

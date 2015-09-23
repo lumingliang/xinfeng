@@ -1,0 +1,28 @@
+<html> 
+<script> 
+function Loaded() 
+{ 
+document.getElementById("loadDiv").style.display="none" 
+document.getElementById("content").style.display="" 
+}
+
+</script> 
+<style type="text/css"> 
+#loadDiv { 
+position:absolute; 
+z-index:999; 
+width:expression(document.body.clientWidth); 
+height:expression(document.body.clientHeight); 
+background-color:#FFFFFF; 
+text-align:center; 
+padding-top:200px; 
+} 
+</style>
+<body onLoad="Loaded()"> 
+
+ 
+<div id="loadDiv"><img src="http:// Loading...</div> 
+ <iframe id="content" style="width: 100%; height: 660px; display:none" src="http://wayou.github.io/SlipHover/" frameborder="0"></iframe>
+
+</body> 
+</html>

@@ -1,0 +1,45 @@
+<!doctype html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<style type="text/css">
+input[type=checkbox] {
+	visibility: hidden;
+}
+.checkbox1 {
+	width: 60px;
+	height: 20px;
+	background: #555;
+
+	position: relative;
+	border-radius: 3px;
+	display: inline-block;
+
+}
+.checkbox1 label {
+	display: block;
+	width: 24px;
+	height: 24px;
+	border-radius: 50%;
+	-webkit-transition:all .5s ease;
+	-moz-transition:all .5s ease;
+	-o-transition:all .5s ease;
+	transition:all .5s ease;
+	cursor: pointer;
+	position: absolute;
+	top: -2px;
+	left: -3px;
+
+	background: #ccc;
+}
+.checkbox1 input[type=checkbox]:checked + label {
+	left: 40px;
+	
+}
+</style>
+
+
+<label class="checkbox1" for="remember">
+							        <input type="checkbox"  id="remember" value="1" name="remember" class="hidde">
+							        <label for="remember"></label>
+</label>
+<b>jjjj</b>

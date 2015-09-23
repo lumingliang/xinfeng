@@ -1,0 +1,179 @@
+var foo = {
+	'prop' : 'bar' ,  // 'prop' 的单引号不是必须的，这里需要知道，js对象和json还是有
+	                   细微差别的，json用于数据传递，js端发送数据前需要JSON.toString(object);
+	                   服务器接收后需要用JSON.pase(body),将请求的JSON字符串化为js对象。或者php数组等
+	'prop1' : 'false' ,
+	prop2 : function () {
+	return 'hello world' ;
+	}
+};
+调用 foo.prop = bar ;
+     foo.prop2 = hello world;
+
+以上对象创建后，便是一个对象，当然同一个空间下的js对象可以互相引用，调用bind方法将对象一的引用绑定到对象2中。
+var foo = {
+	name ： 'lumin' ,
+	func : function () {
+	console.log(this.name); //this 是本对象的引用 
+	}
+};
+
+var bar = {
+	name : 'foobar'
+};
+
+func= foo.func.bind(bar) ;
+func(); //输出foobar;
+
+创建对象的常用方法
+function fooObj (bar) {
+	this.bar = bar ;
+	this.arr = [1,2,3];
+}
+
+fooObj.prototype.func = function() {
+	console.log(this.arr);
+};
+var obj = new fooObj ('obj1');
+obj.func(); // [1,2,3]
+
+闭包：当一个函数内部声明新的函数时候，就产生闭包。
+闭包的作用是使闭包内要用到的变量保存到闭包外的函数运行完毕，对于异步驱动for循环有
+很大的好处。
+
+var closure = function(){
+	var count= 0;
+	var get = function() {
+	count++;
+	return count;
+	};
+	retun get;
+};
+
+var counter = closure();
+console.log(counter() ); //1,
+console.log(counter() );//2. count变量保存了
+
+作用域： js变量的作用域搜索方式是先从函数内部，再从外部，内部优先级最高，其中for等不认为是函数。最外层
+的是全局变量。
+  -----------------------------------------------
+  |模块创建
+  |
+//mode.js 
+var name;
+exports.setName = function (thyName) {
+	name= thyName;
+};
+
+exports.sayHello = function () {
+	console.log('hello' + name);
+};
+
+//getmoule.js 
+var mymoule = require ('./module');
+mymoule.setName('lumin');
+mymoule.sayHello();
+
+或者用以下方法，
+//hi.js
+function hi(){
+	var name;
+	this.setName = function(thyName) {
+	name= thyName;
+	};
+	this.sayHi = function (){
+	console.log('hello' + name);
+	};
+};
+module.exports = hi;
+
+//getHi.js
+var Hi=require('./hello');
+
+hello = new Hi();
+hello.setName('lumin')；
+hello。sayHi(); // hello lumin 
+
+
+
+
+var fs= require('fs');
+var files = [ 'a.txt' , 'b.txt '];
+files.forEach (function (filename) {
+fs.readFile(filename, 'utf-8' ,function (err ,contents ){
+console.log(filename.......);
+});
+});
+
+/*
+                  $.post(
+                     submitUrl,
+                     $('#_1').serialize(),
+                     function(data) {
+                      console.log(data);
+                     // data = eval('('+data+')');
+                    
+                      console.log(data);
+                  
+                  if(data.str===1) {
+                    var str = '<div class="alert alert-success"><h1>注册成功！请到您的邮箱激活！</h1></div>';
+                    $('form').empty().parent('.panel-body').append(str);
+                  } else if(data.status == 302) {
+                    location.href = data.location;
+                  }
+                  else {
+                   // console.log(data.status);
+                    
+                    
+                  } 
+                                  
+                    
+                 }  );*/
+                
+              });
+               
+              /*
+              form.submit(function(e) {
+                e.preventDefault();
+                that.submit();
+              });
+               /*
+             setTimeout(function() {
+              form.find('#submit').click(function(){ that.submit(); } );
+             }, 100);*/
+
+
+             /*
+          checkbox: function() {
+            
+            form.find('.checkbox').toggle(
+              function() {
+                //  $(this).find('.glyphicon').addClass('glyphicon-star');
+                  console.log('i am checkbox');
+                },
+                function() {
+                  //$(this).find('.glyphicon').removeClass('glyphicon-star').html('&nbsp');
+                  console.log('i am checkbox e');
+                }
+            );
+                form.find('.checkbox').click(function() {
+                  //$(this).find('input:checkbox').trigger('click');
+                 // console.log( $(this).siblings('input:checkbox') );
+                 $(this).siblings('input:checkbox').trigger('click');
+
+                  if(flag==1) {
+                    //$(this).find('.glyphicon').addClass('glyphicon-star').html('');
+                    $(this).empty().append('<span class="glyphicon glyphicon-star"></span>');
+                    flag = 0;
+
+                    //console.log(flag);
+                  } else {
+                    //$(this).find('.glyphicon').removeClass('glyphicon-star').html('&nbsp');
+                    $(this).empty().html('&nbsp&nbsp&nbsp');
+                    flag=1;
+                    //console.log(flag);
+                  }
+                });
+          },*/
+
+

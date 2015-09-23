@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<head lang="zh-cn">
+ <meta charset="UTF-8" />
+ <title>test</title>
+ <style type="text/css">
+  .center-block {
+    width: 30%;
+    height: 30%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: calc(-30%/2);
+    margin-left: calc(-30%/2);
+    color: #fff;
+    text-align: center;
+    background-color: #333;
+  }
+  html {
+  min-height: 100%;
+  height: 100%;
+}
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  height: 100%;
+}
+  .cen{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 50px;
+    border: 1px solid blue;
+  }
+  #container{
+    
+    height: 100%;
+    border: 1px solid red; 
+  }
+  
+ </style>
+</head>
+<body>
+<div id="container">
+ <div class="cen">
+  test text
+ </div>
+</div>
+</body>
+</html>

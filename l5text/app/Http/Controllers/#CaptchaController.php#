@@ -1,0 +1,56 @@
+<?php namespace App\Http\Controllers;
+
+//use Requests;
+use Request;
+use App\Http\Controllers\Controller;
+
+
+use Gregwar\Captcha\CaptchaBuilder;
+
+//引用对应的命名空间
+//use Vendor\gregwar\captcha\CaptchaBuilder;
+//use App\vendor\gregwar\captcha\CaptchaBuilder;
+use Session;
+
+
+class CaptchaController extends Controller {
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return Response
+     */
+    
+    public function captcha($tmp)
+    {
+        session::pull('captcha');
+        $builder = new captchabuilder;
+        //可以设置图片宽高及字体
+        $builder->build($width = 200, $height = 60, $font = null);
+        //获取
+验证码的内容
+验证码的内容
+验证码的内容
+验证码的内容
+验证码的内容
+验证码的内容
+验证码的内容
+验证码的内容
+验证码的内容
+验证码的内容
+验证码的内容               uhhhhhhhh
+        $phrase = $builder->getPhrase();
+        $phrase = $builder->getPhrase();
+        $phrase = $builder->getPhrase();
+        $phrase = $builder->getPhrase();
+        $phrase = $builder->getPhrase();        $phrase = $builder->getPhrase();        $phrase = $builder->getPhrase();        $phrase = $builder->getPhrase();        $phrase = $builder->getPhrase();        $phrase = $builder->getPhrase();        $phrase = $builder->getPhrase();        $phrase = $builder->getPhrase();        $phrase = $builder->getPhrase();        $phrase = $builder->getPhrase();        $phrase = $builder->getPhrase();        $phrase = $builder->getPhrase();        $phrase = $builder->getPhrase();        $phrase = $builder->getPhrase();
+        $phrase = $builder->getPhrase();
+
+        $phrase = $builder->getPhrase();
+        $phrase = $builder->getPhrase();
+        $phrase = $builder->getPhrase();
+
+
+        //把内容存
+        Session::put('captcha', $phrase);
+        //生成图片

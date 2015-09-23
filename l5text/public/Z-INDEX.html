@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="author" content="Chomo" />
+<link rel="start" href="http://www.14px.com" title="Home" />
+<title>法则一：同辈元素定位方式相同，且无z-index设置时，html靠后者居上。</title>
+</head>
+<style type="text/css">
+div { font:12px/1.5 arial;}
+div strong { color:#fff; background:#036; display:inline-block;}
+h3 strong { color:#f00;}
+/*--- 定义方块外形 ---*/
+.div1,
+.div2 {
+height:70px;
+width:150px;
+background:#cff;
+border:1px solid #036;
+}
+.grandDiv1,
+.grandDiv2 {
+padding:10px;
+border:1px solid #060;
+width:174px;
+background:#cf9;
+}
+.parentDiv1,
+.parentDiv2 {
+padding:10px;
+border:1px solid #f06;
+width:152px;
+background:#fcf;
+}
+/*--- 定义方块偏移位置、文字位置 ---*/
+.grandDiv2 {
+margin-top:-50px;
+margin-left:95px;
+}
+.parentDiv2 {
+margin-top:-40px;
+margin-left:85px;
+}
+.div2 {
+margin-top:-20px;
+margin-left:75px;
+padding-top:30px;
+height:40px;
+}
+.grandDiv2 .parentDiv2,
+.grandDiv2 .div2,
+.parentDiv2 .div2 { margin:0;}
+</style>
+<body>
+<h3>法则一：同辈元素定位方式相同，且无z-index设置时，html靠后者居上。</h3>
+<div class="div1">.div1{position:static}</div>
+<div class="div2">.div2{position.static}</div>
+<div class="div1" style="position:relative;">.div1{position.relative}</div>
+<div class="div2" style="position:absolute;">.div2{position.absolute}</div>
+</body>
+</html>
