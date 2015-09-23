@@ -1,0 +1,80 @@
+<!--
+
+@extends('_layouts.default')
+
+@section('link')
+
+@endsection
+
+
+
+
+@section('content')
+
+
+<form action="form" method="post" enctype=" multipart/form-data "  >
+	
+	input type="file" name="file[]">
+        <br>
+        <input type="file" name="file[]">
+	<input id="hide" type="hidden" name="_token" value="{{ csrf_token() }}" />
+	<input type="submit"  value="上传" /> multiple 
+
+</form>
+
+@endsection
+
+
+@section('script')
+
+<script src="/js/formupload.js"></script>
+
+@endsection
+
+-->
+
+
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>index_uploads</title>
+</head>
+<body>
+    <form action="form" method="post" enctype="multipart/form-data">
+        <input type="file" name="file[]">
+        <br>
+        <input type="file" name="file[]">
+        <br>
+        <input type="file" name="file[]">
+        <br>
+        <input type="file" name="file[]">
+        <br>
+        <input type="file" name="file[]">
+        <br>
+        <input type="submit" value="uploads">
+        <br>
+        <input id="hide" type="hidden" name="_token" value="{{ csrf_token() }}" />
+    </form>
+</body>
+</html>
+
+
+
+@extends('_layouts.default')
+
+@section('content')
+
+    <form action="form" method="post" enctype="multipart/form-data">
+        <input type="file" name="file[]">
+        <br>
+        <input type="file" name="file[]">
+        <br>
+        <input type="file" name="file[]">
+        <br>
+        <input type="submit" value="uploads">
+        <br>
+        <input id="hide" type="hidden" name="_token" value="{{ csrf_token() }}" />
+    </form>
+
+@endsection

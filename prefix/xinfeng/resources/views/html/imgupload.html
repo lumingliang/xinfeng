@@ -1,0 +1,342 @@
+<!--
+
+<script >
+
+
+
+var value=$('#hide').val();
+
+//禁止浏览器监听
+$(function(){ 
+    //阻止浏览器默认行。 
+    $(document).on({ 
+        dragleave:function(e){    //拖离 
+            e.preventDefault(); 
+        }, 
+        drop:function(e){  //拖后放 
+            e.preventDefault(); 
+        }, 
+        dragenter:function(e){    //拖进 
+            e.preventDefault(); 
+        }, 
+        dragover:function(e){    //拖来拖去 
+            e.preventDefault(); 
+        } 
+    }); 
+
+    $('#ff').click( function (){
+      $('#file_1').trigger('click');
+    })
+
+}); 
+
+/*
+
+    function get() {
+
+    //console.log(this);
+   // console.log(souce);
+    //var f= $('#file_1');
+   // console.log(f);
+    //var files=souce.files;
+    var files=document.getElementById('file_1').files;  //这样就可以取得文件列表，与jquery的不一样
+
+   //console.log(files[1]);//所取得文件的实例，包括了一些文件的相关信息,此对象继承于blob，包括了文件的大小，类型，等信息
+    console.log('我');
+    //var out=[];//创建一个输出的数组
+    for(var i=0,file ; file=files[i] ; i++)
+    {
+        console.log(file);
+        if(!/image\/\w+/.test(file.type)) {  
+          alert("请确保文件为图像类型");  
+          return false;  
+        }  
+        if(window.FileReader) {
+            var fr = new FileReader;
+           fr.onloadend = function() {
+               document.getElementById("m").src=fr.result;
+              // console.log(fr.result);
+
+           };//在readAsDataURl后调用
+            fr.readAsDataURL(file);//必须先注册onloadend(),然后result中存的是一个data：可以用来显示,上传图片
+
+        
+        }
+
+       
+    }
+            xhr = new XMLHttpRequest();
+            xhr.open("post", "file", true);
+            xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+            
+            var fd = new FormData();
+            fd.append('ff', files[0]);
+            //fd.append( 'fff' , files[1]);
+
+           // var value=$('#hide').val();
+           // console.log(value);
+        fd.append( '_token' , value);
+        xhr.send(fd);
+}
+
+
+var box = document.getElementById('target_box'); //获得到框体
+    
+      box.addEventListener("drop",function(e){
+      
+      e.preventDefault(); //取消默认浏览器拖拽效果
+      
+      var fileList = e.dataTransfer.files; //获取文件对象
+      //fileList.length 用来获取文件的长度（其实是获得文件数量）
+      
+      //检测是否是拖拽文件到页面的操作
+      if(fileList.length == 0){
+        $('.dashboard_target_box').removeClass('over');
+        return;
+      }
+      //检测文件是不是图片
+      if(fileList[0].type.indexOf('image') === -1){
+        $('.dashboard_target_box').removeClass('over');
+        return;
+      }
+      
+      //var img = window.webkitURL.createObjectURL(fileList[0]);
+      //拖拉图片到浏览器，可以实现预览功能
+      
+      xhr = new XMLHttpRequest();
+      xhr.open("post", "test.php", true);
+      xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+      
+      var fd = new FormData();
+      fd.append('ff', fileList[0]);
+      
+      xhr.send(fd);
+      
+      
+    },false);
+  
+});
+*/
+
+
+
+//$('#DropZone').bind( 'drop' , fileDrop(event) );
+
+$( '#file_1' ).change(function(){
+  window.files = this.files;
+  //console.log($(this));
+  //console.log(this);//this和$(this )还是有区别的
+
+  //console.log( files[0] );
+  console.log( files.length);
+
+  // preview(files);
+   // $('img').addClass('img');
+   //upload(files);
+   sendfiles(files);
+});
+
+/*
+function fileDrop(e) {
+   //alert('i am drop !');
+   e.preventDefault();
+   e.stopPropagation(); 
+   var files = e.dataTransfer.files; 
+   console.log(files[0]);
+   console.log( files.length);
+   preview(files);
+  // upload(files);
+
+}
+*/
+
+
+
+   var box = document.getElementById('DropZone'); //获得到框体,注意和jquery的区别，不然发生许多无厘头的错误
+    
+     box.addEventListener("drop",function(e){
+      
+      e.preventDefault(); //取消默认浏览器拖拽效果
+     // e.stopPropagation(); 
+      
+       files = e.dataTransfer.files; //获取文件对象
+      //fileList.length 用来获取文件的长度（其实是获得文件数量）
+      console.log( files.length);
+      preview(files);
+      upload(files);
+
+
+    },false);
+    
+
+
+
+
+function preview(files){
+
+  if(files.length>3){
+    alert('文件数不能大于4个');
+    return false;
+  }
+  for(var i=0; i<files.length ;i++)//判断类型并前台显示
+    {
+        var file=files[i];
+        console.log(file);
+        if(!/image\/\w+/.test(file.type)) {  
+          alert("请确保文件为图像类型");  
+          return false;  
+        }
+
+        view(file); 
+    }
+}
+
+/*
+  for(var i=0; i<files.length ;i++)//判断类型并前台显示
+    {
+        var file=files[i];
+        console.log(file);
+        if(!/image\/\w+/.test(file.type)) {  
+          alert("请确保文件为图像类型");  
+          return false;  
+        }  */
+
+function view (file) {
+       // console.log(file);
+        var fr = new FileReader;
+        fr.onloadend = function() {
+        var html ="<img src=' "+fr.result+"' alt='' title=''  />" ;
+         // var html = ' <h1> i am you ! </h1> ';
+         // $( '#DropZone' ).append(html);   
+        $('body').append(html);
+
+         //fr.result=null;
+        };//在readAsDataURl后调用
+
+       
+      fr.readAsDataURL(file);  //必须先注册onloadend(),然后result中存的是一个data：可以用来显示,上传图片  
+      console.log(fr.result);     
+    }
+
+
+
+function upload (files) {
+    for(var i=0; i<files.length ; i++) {
+
+      var file=files[i];
+
+          (function(file) {
+               xhr = new XMLHttpRequest();
+               xhr.open("post", "file", true);
+               xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+
+               xhr.onreadystatechange=function()
+               {
+               if (xhr.readyState==4 && xhr.status==200)
+                 {
+                   var html='<span >'+(i)+'张图片已经上传！ </span>' ;
+                   //value=xhr.responseText;
+                    $('.panel-heading').append(html);
+                 }
+                }
+
+                var fd = new FormData();
+
+
+               fd.append('img' ,file);
+              console.log(file);
+  
+  
+             fd.append( '_token' , value);
+             xhr.send(fd);
+           })(file);
+
+  }
+}
+
+
+
+
+
+
+var j=0;
+
+function ajax( url , fd , cb ){
+  var xhr= new XMLHttpRequest();
+  xhr.onreadystatechange=cb;
+  xhr.open("post", url, true);
+  xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+  xhr.send(fd);
+}
+
+function sendfiles(files){
+
+  
+  var file=files[j];
+
+  var fd = new FormData();
+  fd.append('img' ,file);
+  fd.append( '_token' , value);
+  ajax( 'file' , fd , function(){
+    if (xhr.readyState==4 && xhr.status==200)
+    {
+      var html='<span >'+(i+1)+'张图片已经上传！ </span>' ;
+      value=xhr.responseText;
+      $('.panel-heading').append(html);
+      j++;
+      
+
+    }
+
+  });
+
+
+
+
+}
+
+
+
+
+ </script>
+
+@endsection
+
+
+
+
+
+function sendAllFiles (files) {
+  var fd = new FormData();
+  var token=$('#token').val();
+  fd.append('token' , token);
+  for(var i=0;i<files.length;i++)
+  {
+    fd.append('file',files[i]);
+    sendFile(fd);
+  }
+
+}
+
+function sendFile(fd) {
+  var  xhr=new XMLHttpRequest();
+  xhr.open("post", "http://upload.qiniu.com/", true);
+  xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+  xhr.send(fd);
+
+
+}
+/* 
+        var html=' <div class="col-sm-6 col-md-4"><div class="thumbnail"><img src=" '  ;
+            html+=fr.result;
+            html+=' " alt=""><div class="progress" style="display:none;" ><div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em;"></div></div></div></div> ' ;
+
+
+        var htmll="<div class='col-sm-6 col-md-4' >
+                      <div class='thumbnail' >
+                         <img src='"+fr.result+"' alt='' title='' />
+                         <div class='progress-bar' aria-valuemin='0' aria-valuemax='100' style='min-width: 2em;'>
+                         </div>
+                      </div>
+                  </div>";*/
+
